@@ -4,9 +4,10 @@ import entity.Category;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
-import repository.CategoryRepository;
+import service.CategoryService;
 
 import java.util.List;
 
@@ -15,10 +16,16 @@ import java.util.List;
 public class CategoryResource {
 
     @Inject
-    CategoryRepository categoryRepository;
+    CategoryService categoryService;
 
     @GET
     public List<Category> getAllCategory() {
-        return categoryRepository.listAll();
+        return categoryService.getAllCategoriesSorted();
+    }
+
+    @GET
+    @Path("{id}")
+    public Category getCategoryById(@PathParam("id") long id) {
+        return categoryService.findCategoryById(id);
     }
 }

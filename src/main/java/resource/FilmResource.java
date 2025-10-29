@@ -4,9 +4,10 @@ import entity.Film;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
-import repository.FilmRepository;
+import service.FilmService;
 
 import java.util.List;
 
@@ -15,11 +16,17 @@ import java.util.List;
 public class FilmResource {
 
     @Inject
-    FilmRepository filmRepository;
+    FilmService filmService;
 
     @GET
     public List<Film> getAllFilms() {
-        return filmRepository.listAll();
+        return filmService.getAllFilmsSorted();
+    }
+
+    @GET
+    @Path("{id}")
+    public Film getFilmById(@PathParam("id") long id) {
+        return filmService.findFilmById(id);
     }
 
 }
