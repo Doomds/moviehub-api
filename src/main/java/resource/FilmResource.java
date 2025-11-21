@@ -2,10 +2,7 @@ package resource;
 
 import entity.Film;
 import jakarta.inject.Inject;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.PathParam;
-import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import service.FilmService;
 
@@ -19,8 +16,14 @@ public class FilmResource {
     FilmService filmService;
 
     @GET
-    public List<Film> getAllFilms() {
-        return filmService.getAllFilmsSorted();
+    public List<Film> getFilms(@QueryParam("page") Integer page,
+                               @QueryParam("size") Integer size) {
+
+        if (page == null || size == null) {
+            return filmService.getAllFilmsSorted();
+        }
+
+        return filmService.getFilmsPaginated(page, size);
     }
 
     @GET
@@ -28,5 +31,6 @@ public class FilmResource {
     public Film getFilmById(@PathParam("id") long id) {
         return filmService.findFilmById(id);
     }
+
 
 }

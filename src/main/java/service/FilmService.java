@@ -21,4 +21,8 @@ public class FilmService {
     public Film findFilmById(long id) {
         return filmRepository.findById(id);
     }
+
+    public List<Film> getFilmsPaginated(int page, int size) {
+        return filmRepository.listPaginated(page, size);
+    }
 }

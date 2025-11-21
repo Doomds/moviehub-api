@@ -11,7 +11,7 @@ import service.ActorService;
 
 import java.util.List;
 
-@Path("/actors")
+@Path("/actor")
 @Produces(MediaType.APPLICATION_JSON)
 public class ActorResource {
 
