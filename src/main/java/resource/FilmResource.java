@@ -15,6 +15,7 @@ public class FilmResource {
     @Inject
     FilmService filmService;
 
+    //http://localhost:8080/film?page=2&size=16
     @GET
     public List<Film> getFilms(@QueryParam("page") Integer page,
                                @QueryParam("size") Integer size) {
@@ -32,5 +33,9 @@ public class FilmResource {
         return filmService.findFilmById(id);
     }
 
-
+    @GET
+    @Path("/random")
+    public Film getRandomFilm() {
+        return filmService.getRandomFilm();
+    }
 }

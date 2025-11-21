@@ -25,4 +25,8 @@ public class FilmService {
     public List<Film> getFilmsPaginated(int page, int size) {
         return filmRepository.listPaginated(page, size);
     }
+
+    public Film getRandomFilm() {
+        return filmRepository.getRandomFilm();
+    }
 }
