@@ -2,10 +2,7 @@ package resource;
 
 import entity.Actor;
 import jakarta.inject.Inject;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.PathParam;
-import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import service.ActorService;
 
@@ -19,8 +16,14 @@ public class ActorResource {
     ActorService actorService;
 
     @GET
-    public List<Actor> getAllActors() {
-        return actorService.getAllActorsSorted();
+    public List<Actor> getActors(@QueryParam("page") Integer page,
+                                 @QueryParam("size") Integer size) {
+
+        if (page == null || size == null) {
+            return actorService.getAllActorsSorted();
+        }
+
+        return actorService.getActorsPaginated(page, size);
     }
 
     @GET
