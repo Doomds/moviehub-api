@@ -1,15 +1,19 @@
 package resource;
 
+import dto.FilmDTO;
 import entity.Film;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 import service.FilmService;
 
+import java.net.URI;
 import java.util.List;
 
 @Path("/film")
 @Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 public class FilmResource {
 
     @Inject
@@ -37,5 +41,15 @@ public class FilmResource {
     @Path("/random")
     public Film getRandomFilm() {
         return filmService.getRandomFilm();
+    }
+
+    @POST
+    public Response create(FilmDTO dto) {
+
+        Film film = filmService.create(dto);
+
+        return Response
+                .created(URI.create("/film/" + film.getId()))
+                .build();
     }
 }

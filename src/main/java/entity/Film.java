@@ -18,15 +18,19 @@ public class Film {
     private String description;
 
     @Column(name = "release_year", nullable = true)
-    private int releaseYear;
+    private Integer releaseYear;
+
+    @Column(name = "language_id", nullable = false)
+    private Integer languageId;
 
     public Film() {
     }
 
-    public Film(String title, String description, int releaseYear) {
+    public Film(String title, String description, Integer releaseYear, Integer languageId) {
         this.title = title;
         this.description = description;
         this.releaseYear = releaseYear;
+        this.languageId = languageId;
     }
 
     public long getId() {
@@ -53,12 +57,20 @@ public class Film {
         this.description = description;
     }
 
-    public int getReleaseYear() {
+    public Integer getReleaseYear() {
         return releaseYear;
     }
 
-    public void setReleaseYear(int releaseYear) {
+    public void setReleaseYear(Integer releaseYear) {
         this.releaseYear = releaseYear;
+    }
+
+    public Integer getLanguageId() {
+        return languageId;
+    }
+
+    public void setLanguageId(Integer languageId) {
+        this.languageId = languageId;
     }
 
     @Override

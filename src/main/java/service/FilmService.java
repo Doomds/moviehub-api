@@ -1,9 +1,11 @@
 package service;
 
+import dto.FilmDTO;
 import entity.Film;
 import io.quarkus.panache.common.Sort;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 import repository.FilmRepository;
 
 import java.util.List;
@@ -28,5 +30,18 @@ public class FilmService {
 
     public Film getRandomFilm() {
         return filmRepository.getRandomFilm();
+    }
+
+    @Transactional
+    public Film create(FilmDTO dto) {
+        Film film = new Film();
+        film.setTitle(dto.getTitle());
+        film.setDescription(dto.getDescription());
+        film.setReleaseYear(dto.getReleaseYear());
+        film.setLanguageId(dto.getLanguageId());
+
+        filmRepository.persist(film);
+
+        return film;
     }
 }
