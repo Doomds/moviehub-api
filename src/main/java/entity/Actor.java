@@ -22,6 +22,16 @@ public class Actor {
     @Column(name = "last_update", nullable = false)
     private LocalDateTime lastUpdate;
 
+    @PrePersist
+    public void onCreate() {
+        lastUpdate = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    public void onUpdate() {
+        lastUpdate = LocalDateTime.now();
+    }
+
     public Actor() {
     }
 
@@ -57,10 +67,6 @@ public class Actor {
 
     public LocalDateTime getLastUpdate() {
         return lastUpdate;
-    }
-
-    public void setLastUpdate(LocalDateTime lastUpdate) {
-        this.lastUpdate = lastUpdate;
     }
 
     @Override
