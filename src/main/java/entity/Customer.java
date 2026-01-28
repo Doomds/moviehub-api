@@ -2,7 +2,6 @@ package entity;
 
 import jakarta.persistence.*;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Entity
@@ -14,7 +13,8 @@ public class Customer {
     @Column(name = "customer_id")
     private long id;
 
-    // private long storeId;
+    @Column(name = "store_id", nullable = true, length = 45)
+    private long storeId;
 
     @Column(name = "first_name", nullable = false, length = 45)
     private String firstName;
@@ -25,7 +25,8 @@ public class Customer {
     @Column(name = "email", nullable = false, length = 50)
     private String email;
 
-    //private Address addressId;
+    @Column(name = "address_id", nullable = true)
+    private long addressId;
 
     @Column(name = "active", nullable = false)
     private char active;
@@ -34,7 +35,7 @@ public class Customer {
     private LocalDateTime createdDate;
 
     @Column(name = "update_date", nullable = false)
-    private Timestamp updatedDate;
+    private LocalDateTime updatedDate;
 
     public Customer() {
     }
@@ -79,7 +80,7 @@ public class Customer {
         return createdDate;
     }
 
-    public Timestamp getUpdatedDate() {
+    public LocalDateTime getUpdatedDate() {
         return updatedDate;
     }
 
