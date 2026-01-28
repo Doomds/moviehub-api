@@ -96,4 +96,10 @@ public class Customer {
                 ", updatedDate=" + updatedDate +
                 '}';
     }
+
+    @PrePersist
+    @PreUpdate
+    public void updateTimestamp() {
+        updatedDate = LocalDateTime.now();
+    }
 }

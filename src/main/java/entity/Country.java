@@ -38,4 +38,18 @@ public class Country {
         return lastUpdate;
     }
 
+    @Override
+    public String toString() {
+        return "Country{" +
+                "id=" + id +
+                ", country='" + country + '\'' +
+                ", lastUpdate=" + lastUpdate +
+                '}';
+    }
+
+    @PrePersist
+    @PreUpdate
+    public void updateTimestamp() {
+        lastUpdate = LocalDateTime.now();
+    }
 }
