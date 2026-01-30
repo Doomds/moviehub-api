@@ -13,8 +13,9 @@ public class Customer {
     @Column(name = "customer_id")
     private long id;
 
-    //Store pas encore créé.
-    //private long storeId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "customer_id")
+    private Store store;
 
     @Column(name = "first_name", nullable = false, length = 45)
     private String firstName;
