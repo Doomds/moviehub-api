@@ -13,8 +13,8 @@ public class Customer {
     @Column(name = "customer_id")
     private long id;
 
-    @Column(name = "store_id", nullable = true, length = 45)
-    private long storeId;
+    //Store pas encore créé.
+    //private long storeId;
 
     @Column(name = "first_name", nullable = false, length = 45)
     private String firstName;
@@ -25,8 +25,9 @@ public class Customer {
     @Column(name = "email", nullable = false, length = 50)
     private String email;
 
-    @Column(name = "address_id", nullable = true)
-    private long addressId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "address_id")
+    private Address addressId;
 
     @Column(name = "active", nullable = false)
     private char active;
@@ -66,6 +67,14 @@ public class Customer {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Address getAddressId() {
+        return addressId;
+    }
+
+    public void setAddressId(Address addressId) {
+        this.addressId = addressId;
     }
 
     public char getActive() {
