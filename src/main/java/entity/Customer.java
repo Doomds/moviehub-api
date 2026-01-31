@@ -37,7 +37,7 @@ public class Customer {
     private LocalDateTime createdDate;
 
     @Column(name = "update_date", nullable = false)
-    private LocalDateTime updatedDate;
+    private LocalDateTime lastUpdate;
 
     public Customer() {
     }
@@ -90,8 +90,8 @@ public class Customer {
         return createdDate;
     }
 
-    public LocalDateTime getUpdatedDate() {
-        return updatedDate;
+    public LocalDateTime getLastUpdate() {
+        return lastUpdate;
     }
 
     @Override
@@ -103,13 +103,13 @@ public class Customer {
                 ", email='" + email + '\'' +
                 ", active=" + active +
                 ", createdDate=" + createdDate +
-                ", updatedDate=" + updatedDate +
+                ", updatedDate=" + lastUpdate +
                 '}';
     }
 
     @PrePersist
     @PreUpdate
     public void updateTimestamp() {
-        updatedDate = LocalDateTime.now();
+        lastUpdate = LocalDateTime.now();
     }
 }
