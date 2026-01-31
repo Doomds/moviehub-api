@@ -11,7 +11,7 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "category_id")
-    private long id;
+    private Integer id;
 
     @Column(name = "name", nullable = false, length = 25)
     private String name;
@@ -22,17 +22,8 @@ public class Category {
     public Category() {
     }
 
-    public Category(String name, LocalDateTime lastUpdate) {
-        this.name = name;
-        this.lastUpdate = lastUpdate;
-    }
-
-    public long getId() {
+    public Integer getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -47,10 +38,6 @@ public class Category {
         return lastUpdate;
     }
 
-    public void setLastUpdate(LocalDateTime lastUpdate) {
-        this.lastUpdate = lastUpdate;
-    }
-
     @Override
     public String toString() {
         return "Category{" +
@@ -58,5 +45,11 @@ public class Category {
                 ", Name='" + name + '\'' +
                 ", lastUpdate=" + lastUpdate +
                 '}';
+    }
+
+    @PrePersist
+    @PreUpdate
+    public void updateTimestamp() {
+        lastUpdate = LocalDateTime.now();
     }
 }

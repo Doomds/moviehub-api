@@ -11,7 +11,7 @@ public class Actor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "actor_id")
-    private long id;
+    private Integer id;
 
     @Column(name = "first_name", nullable = false, length = 45)
     private String firstName;
@@ -25,18 +25,8 @@ public class Actor {
     public Actor() {
     }
 
-    public Actor(String firstName, String lastName, LocalDateTime lastUpdate) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.lastUpdate = lastUpdate;
-    }
-
-    public long getId() {
+    public Integer getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getFirstName() {

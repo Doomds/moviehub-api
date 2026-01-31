@@ -2,6 +2,7 @@ package entity;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
@@ -25,7 +26,7 @@ public class Payment {
     private Rental rentalId;
 
     @Column(name = "amount", nullable = false)
-    private int amount;
+    private BigDecimal amount;
 
     @Column(name = "payement_date", nullable = false)
     private LocalDateTime paymentDate;
@@ -64,11 +65,11 @@ public class Payment {
         this.rentalId = rentalId;
     }
 
-    public int getAmount() {
+    public BigDecimal getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 

@@ -1,10 +1,12 @@
 package dto;
 
+import entity.Language;
+
 public class FilmDTO {
     private String title;
     private String description;
     private Integer releaseYear;
-    private Integer languageId;
+    private Language languageId;
 
     public String getTitle() {
         return title;
@@ -30,11 +32,11 @@ public class FilmDTO {
         this.releaseYear = releaseYear;
     }
 
-    public Integer getLanguageId() {
+    public Language getLanguageId() {
         return languageId;
     }
 
-    public void setLanguageId(Integer languageId) {
+    public void setLanguageId(Language languageId) {
         this.languageId = languageId;
     }
 }
